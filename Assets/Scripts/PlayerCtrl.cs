@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    public int HP;
+
     void Start()
     {
-        
+        HP = 100;
     }
 
     // Update is called once per frame
