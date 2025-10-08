@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
-
+    public CharacterController charCtrl;
     public int HP;
 
     void Start()
@@ -15,6 +15,6 @@ public class PlayerCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        charCtrl.SimpleMove(Vector3.forward);
     }
 }
