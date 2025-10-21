@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 public class PlayerCtrl : MonoBehaviour
 {
     public CharacterController charCtrl;
@@ -16,7 +17,11 @@ public class PlayerCtrl : MonoBehaviour
     // 更新:偵測操作
     void Update()
     {
-        
-        if (Input.GetKey(KeyCode.W))  charCtrl.SimpleMove(Vector3.forward);
+         
+    }              
+    public void Move(CallbackContext callback)
+    {
+        //角色控制器.移動(往前)
+       charCtrl.SimpleMove(Vector3.forward);
     }
 }
