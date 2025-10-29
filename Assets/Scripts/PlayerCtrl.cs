@@ -35,7 +35,8 @@ public class PlayerCtrl : MonoBehaviour
     // 更新:偵測操作
     void Update()
     {
-    
+        Action();
+        Animator.SetBool("IsMove", isMove);
     }
     #endregion UNITY生命週期
 
