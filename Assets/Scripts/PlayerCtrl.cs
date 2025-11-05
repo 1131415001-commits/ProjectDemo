@@ -8,7 +8,8 @@ public class PlayerCtrl : MonoBehaviour
 {
     #region 基本參數
     public CharacterController charCtrl;
-     ///<summary>
+    public Animator animator;
+    ///<summary>
     ///角色的血量
     ///</summary>
     public int HP;
@@ -36,7 +37,7 @@ public class PlayerCtrl : MonoBehaviour
     void Update()
     {
         Action();
-        Animator.SetBool("IsMove", isMove);
+        animator.SetBool("IsMove", isMove);
     }
     #endregion UNITY生命週期
 
