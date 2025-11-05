@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerCtrl : MonoBehaviour
@@ -9,6 +10,7 @@ public class PlayerCtrl : MonoBehaviour
     #region 基本參數
     public CharacterController charCtrl;
     public Animator animator;
+    public float moveSpeed = 3f;
     ///<summary>
     ///角色的血量
     ///</summary>
@@ -38,6 +40,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         Action();
         animator.SetBool("IsMove", isMove);
+        animator.SetFloat("BlendInput", input.magnitude);
     }
     #endregion UNITY生命週期
 
@@ -53,8 +56,8 @@ public class PlayerCtrl : MonoBehaviour
         { 
         //角色控制框轉向操作方向
          transform.rotation = Quaternion.LookRotation(look);
-        //角色控制器.移動(往前)
-         charCtrl.SimpleMove(transform.forward);
+            //角色控制器.移動(往前)
+         charCtrl.SimpleMove(transform.forward * moveSpeed * input.magnitude);
         }
     }
 
