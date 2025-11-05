@@ -47,9 +47,15 @@ public class PlayerCtrl : MonoBehaviour
         //轉動角色
         look.z = Input.y;    
         look.x = Input.x;
-        transform.rotation = Quaternion.LookRotation(look);
-         //角色控制器.移動(往前)
-        if (isMove) charCtrl.SimpleMove(transform.forward);
+       
+        //有移動操作產生時
+        if (isMove)
+        { 
+        //角色控制框轉向操作方向
+         transform.rotation = Quaternion.LookRotation(look);
+        //角色控制器.移動(往前)
+         charCtrl.SimpleMove(transform.forward);
+        }
     }
 
     public void Move(CallbackContext callback)
