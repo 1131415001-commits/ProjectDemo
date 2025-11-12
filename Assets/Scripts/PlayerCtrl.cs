@@ -11,6 +11,8 @@ public class PlayerCtrl : MonoBehaviour
     public CharacterController charCtrl;
     public Animator animator;
     public float moveSpeed = 3f;
+    public float jumpHeight = 2f;
+    
     ///<summary>
     ///角色的血量
     ///</summary>
@@ -20,6 +22,7 @@ public class PlayerCtrl : MonoBehaviour
     ///</summary>
     Vector2 Input;
     Vector3 look;
+    float speedV;
     #endregion 基本參數
 
     #region 角色公開狀態
@@ -27,6 +30,11 @@ public class PlayerCtrl : MonoBehaviour
     ///角色是否有接收輸入操作
     ///</summary>
     public bool isMove => Input != Vector2.zero;
+
+    public bool isGrounded => charCtrl.isGrounded;
+
+    public float G => 9.8f;
+
     #endregion 角色公開狀態
     #region UNITY生命週期
     // 初始化
@@ -59,13 +67,23 @@ public class PlayerCtrl : MonoBehaviour
             //角色控制器.移動(往前)
          charCtrl.SimpleMove(transform.forward * moveSpeed * Input.magnitude);
         }
+        //地心引力
+        speedV -= G;
+        charCtrl.Move(Vector3.up * speedV * Time.deltaTime);
     }
 
     public void Move(CallbackContext callback)
     {
         Input = callback.ReadValue<Vector2>();
+        Debug.Log(Input);
        
-       
+    }
+    public void Jump(CallbackContext callback)
+    { 
+    if (isGrounded && callback.performed)
+        {
+            Debug.Log("從地面起跳");
+        }
     }
     #endregion 操作設計
 }
