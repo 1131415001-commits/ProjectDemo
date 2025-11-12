@@ -83,6 +83,8 @@ public class PlayerCtrl : MonoBehaviour
     if (isGrounded && callback.performed)
         {
             Debug.Log("從地面起跳");
+            speedV = Mathf.Sqrt(2 * jumpHeight * G);
+           
         }
     }
     #endregion 操作設計
