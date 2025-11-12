@@ -40,7 +40,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         Action();
         animator.SetBool("IsMove", isMove);
-        animator.SetFloat("BlendInput", input.magnitude);
+        animator.SetFloat("BlendInput", Input.magnitude);
     }
     #endregion UNITY生命週期
 
@@ -57,7 +57,7 @@ public class PlayerCtrl : MonoBehaviour
         //角色控制框轉向操作方向
          transform.rotation = Quaternion.LookRotation(look);
             //角色控制器.移動(往前)
-         charCtrl.SimpleMove(transform.forward * moveSpeed * input.magnitude);
+         charCtrl.SimpleMove(transform.forward * moveSpeed * Input.magnitude);
         }
     }
 
