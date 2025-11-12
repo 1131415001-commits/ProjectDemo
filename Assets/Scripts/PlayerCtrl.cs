@@ -11,6 +11,7 @@ public class PlayerCtrl : MonoBehaviour
     public CharacterController charCtrl;
     public Animator animator;
     public float moveSpeed = 3f;
+    
     public float jumpHeight = 2f;
     
     ///<summary>
@@ -36,6 +37,7 @@ public class PlayerCtrl : MonoBehaviour
     public float G => 9.8f;
 
     #endregion 角色公開狀態
+
     #region UNITY生命週期
     // 初始化
     void Start()
@@ -68,7 +70,7 @@ public class PlayerCtrl : MonoBehaviour
          charCtrl.SimpleMove(transform.forward * moveSpeed * Input.magnitude);
         }
         //地心引力
-        speedV -= G;
+        speedV -= G * Time.deltaTime;
         charCtrl.Move(Vector3.up * speedV * Time.deltaTime);
     }
 
