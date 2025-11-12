@@ -190,6 +190,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 963232def473de54c8f1728849c01a77, type: 2}
+    - target: {fileID: 5866666021909216657, guid: cfbfb95b5f2b90949be0b5faab2775fb,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -235,6 +240,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charCtrl: {fileID: 590786760}
   animator: {fileID: 1079905015}
+  moveSpeed: 3
+  jumpHeight: 2
   HP: 0
 --- !u!33 &590786758
 MeshFilter:
