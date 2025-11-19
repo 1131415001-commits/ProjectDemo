@@ -63,11 +63,11 @@ public class PlayerCtrl : MonoBehaviour
         look.z = Input.y;    
         look.x = Input.x;
        
-        {
+        
             //有移動操作產生時角色控制框轉向操作方向
             if (isMove) transform.rotation = Quaternion.LookRotation(look);
          
-        }
+        
         //地心引力
         speedV -= G * Time.deltaTime;
         charCtrl.Move(Velocity * Time.deltaTime);
