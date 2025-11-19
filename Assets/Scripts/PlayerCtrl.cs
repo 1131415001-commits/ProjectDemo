@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 using UnityEngine.Windows;
 using static UnityEngine.InputSystem.InputAction;
 
@@ -35,6 +36,7 @@ public class PlayerCtrl : MonoBehaviour
     public bool isGrounded => charCtrl.isGrounded;
 
     public float G => 9.8f;
+    public Vector3 Velocity => transform.forward * moveSpeed * Input.magnitude + Vector3.up * speedV;
 
     #endregion 角色公開狀態
 
@@ -61,17 +63,14 @@ public class PlayerCtrl : MonoBehaviour
         look.z = Input.y;    
         look.x = Input.x;
        
-        //有移動操作產生時
-        if (isMove)
-        { 
-        //角色控制框轉向操作方向
-         transform.rotation = Quaternion.LookRotation(look);
-            //角色控制器.移動(往前)
-         charCtrl.SimpleMove(transform.forward * moveSpeed * Input.magnitude);
+        {
+            //有移動操作產生時角色控制框轉向操作方向
+            if (isMove) transform.rotation = Quaternion.LookRotation(look);
+         
         }
         //地心引力
         speedV -= G * Time.deltaTime;
-        charCtrl.Move(Vector3.up * speedV * Time.deltaTime);
+        charCtrl.Move(Velocity * Time.deltaTime);
     }
 
     public void Move(CallbackContext callback)
