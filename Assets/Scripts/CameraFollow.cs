@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [Header("目標跟隨")]
+    [Header("跟隨目標")]
     public Transform target;
     [Header("跟隨速度")]
     public float followSpeed = 3f;
