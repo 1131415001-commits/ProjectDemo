@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UIHpBarCtrl : MonoBehaviour
 {
     [Header("¦å±øUI¤¸¥ó")]
-    public ImageConversion hpBarImg;
+    public Image hpBarImg;
 
     private void Update()
     {
