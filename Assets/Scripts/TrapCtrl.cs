@@ -8,7 +8,7 @@ public class TrapCtrl : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-        GameData.hp -=10
+            GameData.hp -= 10;
         }
     }
 }
