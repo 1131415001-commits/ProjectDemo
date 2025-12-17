@@ -9,6 +9,7 @@ public class RecoveryCtrl : MonoBehaviour
         if (other.tag == "Player")
         {
             GameData.hp = GameData.hpMax;
+            Destroy(gameObject);
         }
     }
 }
