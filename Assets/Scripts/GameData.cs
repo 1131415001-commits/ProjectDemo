@@ -13,7 +13,11 @@ public static class GameData
             return (float)hp / (float)hpMax;
 
         }
-
     }
+
+        public static int keyCount = 0;
+        public static int keyMax = 3;
+
 }
+
 
