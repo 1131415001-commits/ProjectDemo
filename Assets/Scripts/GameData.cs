@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,13 @@ public static class GameData
         public static int keyCount = 0;
         public static int keyMax = 3;
 
+
+    public static Action updateKey;
+public static void AddKey() 
+    {
+        keyCount += 1;
+        updateKey();
+    }
 }
 
 

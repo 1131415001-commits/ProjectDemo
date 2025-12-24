@@ -9,7 +9,7 @@ public class KeyItem : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            GameData.keyCount += 1;
+            GameData.AddKey();
             Destroy(gameObject);
         }
     }
