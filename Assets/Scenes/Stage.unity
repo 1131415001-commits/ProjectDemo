@@ -1112,6 +1112,8 @@ GameObject:
   - component: {fileID: 523205598}
   - component: {fileID: 523205600}
   - component: {fileID: 523205599}
+  - component: {fileID: 523205602}
+  - component: {fileID: 523205601}
   m_Layer: 5
   m_Name: Cutin
   m_TagString: Untagged
@@ -1177,6 +1179,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523205597}
   m_CullTransparentMesh: 1
+--- !u!114 &523205601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523205597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12febedbf0d79314e846281be24e4504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  cutInText: {fileID: 1637769945}
+  startInfo: "\u627E\u52303\u628A\u9470\u5319"
+  endInfo: "\u4EFB\u52D9\u5B8C\u6210"
+--- !u!225 &523205602
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523205597}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &590786754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1927,7 +1957,7 @@ MonoBehaviour:
   - {fileID: 51282932}
   - {fileID: 637158004}
   got: {r: 1, g: 1, b: 1, a: 0}
-  none: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 0}
+  none: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &961514710 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 6f861a5f3e542c94a80038eab2cb83d1,
