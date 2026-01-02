@@ -16,6 +16,7 @@ public class UIKeyCountCtrl : MonoBehaviour
     {
         UpdateKeyUI();
         GameData.updateKey = UpdateKeyUI;
+UICutInCtrl.instance.StartInfo();
     }
 
    public void UpdateKeyUI()
@@ -25,7 +26,10 @@ public class UIKeyCountCtrl : MonoBehaviour
         {
             if (i < GameData.keyCount) keys[i].color = got;
             else keys[i].color = none;
-
         }
+if (GameData.keyCount >= 3)
+{
+UICutInCtrl.instance.EndInfo();
     }
+  }
 }

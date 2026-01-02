@@ -8,9 +8,8 @@ public class UIHpBarCtrl : MonoBehaviour
     [Header("¦å±øUI¤¸¥ó")]
     public Image hpBarImg;
 
-    private void Update()
+    void Update()
     {
         hpBarImg.fillAmount = GameData.hpFillAmount;
     }
-
 }

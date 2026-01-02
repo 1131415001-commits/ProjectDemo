@@ -3,25 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UICutinCtrl : MonoBehaviour
+public class UICutInCtrl : MonoBehaviour
 {
+    public static UICutInCtrl instance;
+
     public Animator animator;
 
     public Text cutInText;
-        public string startInfo;
+    public string startInfo;
     public string endInfo;
 
-
-
+private void Awake()
+{
+instance = this;
+}
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    [ContextMenu("開始訊息")]
+    public void StartInfo()
     {
-        
+        cutInText.text = startInfo;
+        animator.SetTrigger("Start")
     }
+
+ [ContextMenu("結束訊息")]
+public void EndInfo()
+{
+cutInText.text = EndInfo;
+        animator.SetTrigger("End")
+  }
 }
