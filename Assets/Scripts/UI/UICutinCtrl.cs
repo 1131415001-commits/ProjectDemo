@@ -13,27 +13,22 @@ public class UICutInCtrl : MonoBehaviour
     public string startInfo;
     public string endInfo;
 
-private void Awake()
-{
-instance = this;
-}
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        instance = this;
     }
 
     [ContextMenu("開始訊息")]
     public void StartInfo()
     {
         cutInText.text = startInfo;
-        animator.SetTrigger("Start")
+        animator.SetTrigger("Start");
     }
 
- [ContextMenu("結束訊息")]
-public void EndInfo()
-{
-cutInText.text = EndInfo;
-        animator.SetTrigger("End")
-  }
+    [ContextMenu("結束訊息")]
+    public void EndInfo()
+    {
+        cutInText.text = endInfo;
+        animator.SetTrigger("End");
+    }
 }
