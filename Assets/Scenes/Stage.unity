@@ -2935,7 +2935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2984,7 +2984,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523205597}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -3758,8 +3758,8 @@ MonoBehaviour:
   - {fileID: 517981187}
   - {fileID: 51282932}
   - {fileID: 637158004}
-  got: {r: 1, g: 1, b: 1, a: 0}
-  none: {r: 0, g: 0, b: 0, a: 0}
+  gotColor: {r: 1, g: 1, b: 1, a: 1}
+  noneColor: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
 --- !u!4 &961514710 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 6f861a5f3e542c94a80038eab2cb83d1,
@@ -3906,7 +3906,7 @@ Transform:
   m_GameObject: {fileID: 1010387990}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 181.22, y: 21.61, z: 249.69}
+  m_LocalPosition: {x: 181.22, y: 22.07, z: 249.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

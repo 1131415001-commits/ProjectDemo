@@ -5,31 +5,48 @@ using UnityEngine.UI;
 
 public class UIKeyCountCtrl : MonoBehaviour
 {
-    public Image[ ] keys;
-    public Color got;
-    public Color none;
+    public Image[] keys;
 
-    // Start is called before the first frame update
+    [Header("顏色設定")]
+    public Color gotColor = Color.white;   // 拿到
+    public Color noneColor = Color.black;  // 尚未拿到
+
     void Start()
     {
         UpdateKeyUI();
 
+        // 託管 UI 更新
         GameData.updateKey = UpdateKeyUI;
 
-UICutInCtrl.instance.StartInfo();
-    }
-
-   public void UpdateKeyUI()
-
-    {
-        for (int i = 0; i < GameData.keyMax; i++)
+        // 開始提示
+        if (UICutInCtrl.instance != null)
         {
-            if (i < GameData.keyCount) keys[i].color = got;
-            else keys[i].color = none;
+            UICutInCtrl.instance.StartInfo();
         }
-if (GameData.keyCount >= 3)
-{
-UICutInCtrl.instance.EndInfo();
     }
-  }
+
+    public void UpdateKeyUI()
+    {
+        int max = Mathf.Min(GameData.keyMax, keys.Length);
+
+        for (int i = 0; i < max; i++)
+        {
+            if (i < GameData.keyCount)
+            {
+                keys[i].color = gotColor;   // 變亮
+            }
+            else
+            {
+                keys[i].color = noneColor;  // 變黑
+            }
+        }
+
+        if (GameData.keyCount >= GameData.keyMax)
+        {
+            if (UICutInCtrl.instance != null)
+            {
+                UICutInCtrl.instance.EndInfo();
+            }
+        }
+    }
 }
