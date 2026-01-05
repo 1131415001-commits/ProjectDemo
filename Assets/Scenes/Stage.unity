@@ -3063,7 +3063,7 @@ Transform:
   m_GameObject: {fileID: 590786754}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 232.35, y: 3.68, z: 223.25}
+  m_LocalPosition: {x: 215.1, y: 10.4, z: 229.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3759,7 +3759,7 @@ MonoBehaviour:
   - {fileID: 51282932}
   - {fileID: 637158004}
   gotColor: {r: 1, g: 1, b: 1, a: 1}
-  noneColor: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
+  noneColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &961514710 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 6f861a5f3e542c94a80038eab2cb83d1,
@@ -3906,7 +3906,7 @@ Transform:
   m_GameObject: {fileID: 1010387990}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 181.22, y: 22.07, z: 249.69}
+  m_LocalPosition: {x: 210.01, y: 17, z: 239.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4358,7 +4358,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ???
+  m_Text: "\u627E\u52303\u628A\u9470\u5319"
 --- !u!222 &1637769946
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4468,7 +4468,7 @@ Transform:
   m_GameObject: {fileID: 1714088266}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 229.13, y: 4.04, z: 224.7}
+  m_LocalPosition: {x: 214.7, y: 14.3, z: 233.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
