@@ -1,52 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIKeyCountCtrl : MonoBehaviour
 {
     public Image[] keys;
+    public Color gotColor = Color.white;
+    public Color noneColor = Color.black;
 
-    [Header("顏色設定")]
-    public Color gotColor = Color.white;   // 拿到
-    public Color noneColor = Color.black;  // 尚未拿到
+    private bool endInfoPlayed = false;
 
     void Start()
     {
-        UpdateKeyUI();
+        Debug.Log("UIKeyCountCtrl Start");
 
-        // 託管 UI 更新
+        UpdateKeyUI();
         GameData.updateKey = UpdateKeyUI;
 
-        // 開始提示
         if (UICutInCtrl.instance != null)
-        {
             UICutInCtrl.instance.StartInfo();
-        }
+        else
+            Debug.LogError("找不到 UICutInCtrl.instance");
     }
 
     public void UpdateKeyUI()
     {
+        Debug.Log($"UpdateKeyUI，被呼叫，keyCount = {GameData.keyCount}");
+
         int max = Mathf.Min(GameData.keyMax, keys.Length);
 
         for (int i = 0; i < max; i++)
         {
-            if (i < GameData.keyCount)
-            {
-                keys[i].color = gotColor;   // 變亮
-            }
-            else
-            {
-                keys[i].color = noneColor;  // 變黑
-            }
+            keys[i].color = (i < GameData.keyCount) ? gotColor : noneColor;
         }
 
-        if (GameData.keyCount >= GameData.keyMax)
+        if (!endInfoPlayed && GameData.keyCount >= GameData.keyMax)
         {
+            endInfoPlayed = true;
+
+            Debug.Log("鑰匙達標，呼叫 EndInfo");
+
             if (UICutInCtrl.instance != null)
-            {
                 UICutInCtrl.instance.EndInfo();
-            }
+            else
+                Debug.LogError("EndInfo 時找不到 UICutInCtrl.instance");
         }
     }
 }
