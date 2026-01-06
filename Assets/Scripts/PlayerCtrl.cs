@@ -11,23 +11,29 @@ public class PlayerCtrl : MonoBehaviour
     public float moveSpeed = 3f;
     public float jumpHeight = 2f;
 
+    public int HP;
+
     Vector2 input;
     Vector3 look;
     float speedV;
     #endregion
 
-    #region 狀態
+    #region 角色公開狀態
     public bool isMove => input != Vector2.zero;
     public bool isGrounded => charCtrl.isGrounded;
+
     public float G => 9.8f;
 
-    Vector3 Velocity =>
+    public Vector3 Velocity =>
         transform.forward * moveSpeed * input.magnitude +
         Vector3.up * speedV;
+
+    public float VelocityY => charCtrl.velocity.y;
     #endregion
 
     void Start()
     {
+        HP = 100;
         speedV = 0f;
     }
 
@@ -38,11 +44,12 @@ public class PlayerCtrl : MonoBehaviour
         animator.SetBool("IsMove", isMove);
         animator.SetBool("IsGround", isGrounded);
         animator.SetFloat("BlendInput", input.magnitude);
+        animator.SetFloat("VelocityY", VelocityY); // ? 正確
     }
 
     void Action()
     {
-        // 角色朝移動方向轉向
+        // 移動方向
         look = new Vector3(input.x, 0, input.y);
 
         if (isMove)
@@ -70,7 +77,7 @@ public class PlayerCtrl : MonoBehaviour
             Debug.Log("從地面起跳");
 
             speedV = Mathf.Sqrt(2 * jumpHeight * G);
-            animator.SetTrigger("Jump"); // ? 修正這行
+            animator.SetTrigger("Jump"); // ? 修正
         }
     }
 }
