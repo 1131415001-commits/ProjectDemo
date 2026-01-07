@@ -1,84 +1,130 @@
+
+
 using UnityEngine;
+using System.Collections;
 
 public class EnemyCtrl : MonoBehaviour
 {
-    #region 基本參數
-    public CharacterController charCtrl;
-    public Transform player;
+    // The distance the enemy can see the player
+    public float searchRange = 10f;
+    // The distance the enemy can attack the player
+    public float attackRange = 2f;
+    public float attackCooldown = 2f; // Time between attacks
 
-    [Header("移動參數")]
-    public float moveSpeed = 2f;
-    public float gravity = 9.8f;
+    private CharacterController controller;
+    private Animator animator;
+    private Transform player;
+    private float nextAttackTime = 0f; // Timer for attack cooldown
 
-    [Header("AI 距離設定")]
-    public float searchDistance = 10f;   // 搜索範圍
-    public float attackDistance = 2f;    // 攻擊距離
 
-    [Header("Animator（子物件）")]
-    public Animator animator;
-    #endregion
+    // Use this for initialization
+    void Start()
+    {
+        // Get the CharacterController on this object
+        controller = GetComponent<CharacterController>();
 
-    #region 狀態
-    float speedV;
-    float distance;
-    #endregion
+        // Get the Animator component from any child object
+        animator = GetComponentInChildren<Animator>();
 
+        // Find the player object by its tag
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            player = playerObject.transform;
+        }
+        else
+        {
+            Debug.LogError("Player object not found. Please make sure the player has the 'Player' tag.");
+        }
+
+        if (animator == null)
+        {
+            Debug.LogError("Animator not found on any child object.");
+        }
+    }
+
+    // Update is called once per frame
     void Update()
     {
-        if (player == null) return;
-
-        distance = Vector3.Distance(transform.position, player.position);
-
-        if (distance <= attackDistance)
+        if (player == null || controller == null)
         {
+            // Stop execution if essential components are missing
+            return;
+        }
+
+        // Calculate the distance to the player
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+        if (distanceToPlayer <= attackRange)
+        {
+            // Player is in attack range
             Attack();
         }
-        else if (distance <= searchDistance)
+        else if (distanceToPlayer <= searchRange)
         {
+            // Player is in search range
             Chase();
         }
         else
         {
+            // Player is out of range
             Idle();
         }
-
-        ApplyGravity();
     }
 
-    #region 行為
     void Idle()
     {
-        animator.SetBool("IsMove", false);
+        if (animator != null)
+        {
+            animator.SetBool("IsRunning", false);
+            animator.SetBool("IsAttacking", false);
+        }
     }
 
     void Chase()
     {
-        animator.SetBool("IsMove", true);
+        // Look at the player
+        Vector3 direction = player.position - transform.position;
+        direction.y = 0; // Keep the enemy upright
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 0.1f);
 
-        Vector3 dir = player.position - transform.position;
-        dir.y = 0;
-
-        // 面向玩家
-        transform.rotation = Quaternion.LookRotation(dir);
-
-        // 移動
-        Vector3 move = transform.forward * moveSpeed;
-        charCtrl.Move(move * Time.deltaTime);
+        // Move towards the player
+        if (direction.magnitude > attackRange)
+        {
+            controller.Move(direction.normalized * 3.0f * Time.deltaTime); // Using a sample speed of 3.0f
+            if (animator != null)
+            {
+                animator.SetBool("IsRunning", true);
+                animator.SetBool("IsAttacking", false);
+            }
+        }
     }
 
     void Attack()
     {
-        animator.SetBool("IsMove", false);
-        animator.SetTrigger("Attack");
-    }
+        // Look at the player
+        Vector3 direction = player.position - transform.position;
+        direction.y = 0;
+        transform.rotation = Quaternion.LookRotation(direction);
 
-    void ApplyGravity()
-    {
-        if (charCtrl.isGrounded && speedV < 0)
-            speedV = -2f;
+        // Trigger attack animation
+        if (animator != null)
+        {
+            animator.SetBool("IsRunning", false);
+            animator.SetBool("IsAttacking", true);
+        }
 
-        speedV -= gravity * Time.deltaTime;
-        charCtrl.Move(Vector3.up * speedV * Time.deltaTime);
+        // Check if it's time to attack again
+        if (Time.time >= nextAttackTime)
+        {
+            // Calculate damage (10% of max HP)
+            int damage = (int)(GameData.hpMax * 0.1f);
+            GameData.hp -= damage;
+
+            Debug.Log($"Enemy attacked Player, dealing {damage} damage. Player HP is now {GameData.hp}");
+
+            // Set the next attack time
+            nextAttackTime = Time.time + attackCooldown;
+        }
     }
-    #endregion
 }
