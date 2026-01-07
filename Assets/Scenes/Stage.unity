@@ -2972,7 +2972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12febedbf0d79314e846281be24e4504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 523205603}
   cutInText: {fileID: 1637769945}
   startInfo: "\u627E\u52303\u628A\u9470\u5319"
   endInfo: "\u4EFB\u52D9\u5B8C\u6210"
