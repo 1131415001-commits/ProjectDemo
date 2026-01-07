@@ -10,6 +10,9 @@ public class UIHpBarCtrl : MonoBehaviour
 
     void Update()
     {
+        // ¨¾§b¡GÁ×§K NullReferenceException
+        if (hpBarImg == null) return;
+
         hpBarImg.fillAmount = GameData.hpFillAmount;
     }
 }
